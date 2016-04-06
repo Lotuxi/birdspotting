@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  h1 Bird records
+
+  .birdsSeen
+    for bird in birds
+      p Name: #{bird.name}
+      p Description: #{bird.description}
+      p Average Eggs Laid: #{bird.averageEggsLaid}
+      if bird.threatened
+        p This bird is threatened
+      p Dates seen:
+        ul
+          for date in bird.datesSeen
+            li #{date}
+
+            form(action="/addDate", method="POST")
+
+              label Add new date seen
+                input(name="datesSeen" type="date" required)
+              input(name="name" value="#{bird.name}" hidden)
+              input(name="addDate" type="submit" value="Add new date")
+      hr
+
+  .addNewSighting
+
+    if error
+      p #{error}
+
+    form(submit='/', method='POST')
+      label Name (required)
+        input(name="name", type="text", required)
+      br
+      label Description
+        input(name="description", type="text")
+      br
+      label Average Eggs
+        input(name="averageEggsLaid", type="number", min="0")
+      br
+      label Threatened?
+        input(name="threatened", type="checkbox")
+      br
+      label Nest location
+        input(name="location", type="text")
+      label Nest materials
+          input(name="materials", type="text")
+      br
+      label Date seen (required)
+        input(name="datesSeen", type="date" required)
+      br
+      input(type="submit", name="addBird", value="Add new sighting")
