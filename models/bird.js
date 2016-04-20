@@ -8,6 +8,7 @@ var birdSchema = Schema({
     unique : true,
     lowercase : true },
   description : String,
+  nestType : String,
   averageEggsLaid : {type : Number, min : 1, max : 50},
   threatened : { type : Boolean, default : false},
   datesSeen : [{ type : Date, default : Date.now}]

@@ -41,6 +41,9 @@ block content
       label Threatened?
         input(name="threatened", type="checkbox")
       br
+      label Nest Type
+        input(name="nestType", type="text")
+      br
       label Nest location
         input(name="location", type="text")
       label Nest materials
@@ -50,3 +53,12 @@ block content
         input(name="datesSeen", type="date" required)
       br
       input(type="submit", name="addBird", value="Add new sighting")
+
+
+  .deleteSighting
+
+    form(submit='/', method='POST')
+      label Name (required)
+        input(name="name", type="text", required)
+      br
+        input(type="submit", name="deleteBird", value="Remove Bird from database")

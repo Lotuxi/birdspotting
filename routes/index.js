@@ -67,4 +67,17 @@ router.post('/addDate', function(req, res, next) {
   });
 });
 
+router.post('/deleteBird', function(err, bird) {
+
+  var deleteBird = function(err, birdDocs) {
+    birdDocs.collection('restaurants').deleteMany(
+        { "bird": bird },
+        function(err) {
+          console.log("removed bird " +bird);
+          callback();
+        }
+    );
+  };
+});
+
 module.exports = router;
